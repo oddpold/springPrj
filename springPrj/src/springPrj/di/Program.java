@@ -1,5 +1,8 @@
 package springPrj.di;
 
+/*
+ * 이클립스 인텔리센스가 사용하지 않는 import는 자동으로 접는다. 주의하자
+ */
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -8,6 +11,9 @@ import springPrj.di.ui.GridExamConsole;
 import springPrj.di.ui.InlineExamConsole;
 
 public class Program {
+
+	// xml에서 객체를 읽어오기위한 인터페이스. 이클립스가 선선언 후사용 원칙으로 바꿔준다
+	private static ApplicationContext context;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -52,10 +58,7 @@ public class Program {
 //		console.setExam(exam);
 //		console.print();
 
-		/*
-		 * 4. 지시자를 사용하는 방법. springframework에서 ApplicationContext를 이용해서 객체를 임포트 하고
-		 */
-		ApplicationContext context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
+		context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
 		
 		// 4-1. 객체의 클래스명으로 읽어 올 수있다. 단, 객체를 형변환 해야 한다
 //		ExamConsole console = (ExamConsole) context.getBean("console");
