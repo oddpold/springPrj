@@ -2,12 +2,14 @@ package springPrj.di;
 
 /*
  * 이클립스 인텔리센스가 사용하지 않는 import는 자동으로 접는다. 주의하자
+ * preferences > java > editor > folding : 체크 해제
  */
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import springPrj.di.entity.Exam;
+import springPrj.di.entity.NewlecExam;
 import springPrj.di.ui.ExamConsole;
-import springPrj.di.ui.GridExamConsole;
 import springPrj.di.ui.InlineExamConsole;
 
 public class Program {
@@ -40,12 +42,15 @@ public class Program {
 		 * 2. 생성자를 사용하는 또다른 방법. interface class에 setter 함수를 만들고 java class에서 오버라이딩 한다
 		 * 이클립스 2021.06 버전 현재 : 각 클래스에 맞게 setter 함수를 자동 생성이 가능하다
 		 */
-//		Exam exam = new NewlecExam();
-//		ExamConsole console = new InlineExamConsole();
+		Exam exam = new NewlecExam();
+		ExamConsole console = new InlineExamConsole();
 //		ExamConsole console = new GridExamConsole();
-//		console.setExam(exam);
-//		console.print();
+		console.setExam(exam);
+		console.print();
 
+		// 그냥 줄나누기
+		System.out.print("\n\n");
+		
 		/*
 		 * 3. 스프링을 사용해서 settings.xml에 지시를 한다
 		 */
@@ -64,9 +69,9 @@ public class Program {
 //		ExamConsole console = (ExamConsole) context.getBean("console");
 
 		// 4-2. 객체의 클래스를 직접 가져오는 방식
-		ExamConsole console = context.getBean(ExamConsole.class);
+		ExamConsole lpconsole = context.getBean(ExamConsole.class);
 		
-		console.print();
+		lpconsole.print();
 		
 	}
 
