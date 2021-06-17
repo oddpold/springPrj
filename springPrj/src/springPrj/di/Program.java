@@ -1,7 +1,8 @@
 package springPrj.di;
 
-import springPrj.di.entity.Exam;
-import springPrj.di.entity.NewlecExam;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import springPrj.di.ui.ExamConsole;
 import springPrj.di.ui.GridExamConsole;
 import springPrj.di.ui.InlineExamConsole;
@@ -31,6 +32,7 @@ public class Program {
 		
 		/*
 		 * 2. 생성자를 사용하는 또다른 방법. interface class에 setter 함수를 만들고 java class에서 오버라이딩 한다
+		 * 이클립스 2021.06 버전 현재 : 각 클래스에 맞게 setter 함수를 자동 생성이 가능하다
 		 */
 //		Exam exam = new NewlecExam();
 //		ExamConsole console = new InlineExamConsole();
@@ -51,8 +53,17 @@ public class Program {
 //		console.print();
 
 		/*
-		 * 4. 
+		 * 4. 지시자를 사용하는 방법. springframework에서 ApplicationContext를 이용해서 객체를 임포트 하고
 		 */
+		ApplicationContext context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
+		
+		// 4-1. 객체의 클래스명으로 읽어 올 수있다. 단, 객체를 형변환 해야 한다
+//		ExamConsole console = (ExamConsole) context.getBean("console");
+
+		// 4-2. 객체의 클래스를 직접 가져오는 방식
+		ExamConsole console = context.getBean(ExamConsole.class);
+		
+		console.print();
 		
 	}
 

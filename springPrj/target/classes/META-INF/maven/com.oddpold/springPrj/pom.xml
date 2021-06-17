@@ -3,6 +3,16 @@
   <groupId>com.oddpold</groupId>
   <artifactId>springPrj</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+
+<dependencies>
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>5.3.8</version>
+</dependency>
+</dependencies>
+
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
