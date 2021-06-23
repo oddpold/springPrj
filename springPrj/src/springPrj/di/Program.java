@@ -63,6 +63,9 @@ public class Program {
 //		console.setExam(exam);
 //		console.print();
 
+		// 이클립스 문제인지 스프링 문제인지...선선언 후사용 규칙을 강요한다.
+		// 주의 해서 사용하고, 주석을 꼭 남겨서 잊지 않도록 하자
+//		ApplicationContext context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
 		context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
 		
 		// 4-1. 객체의 클래스명으로 읽어 올 수있다. 단, 객체를 형변환 해야 한다
