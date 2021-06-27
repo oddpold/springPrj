@@ -68,6 +68,9 @@ public class Program {
 //		ApplicationContext context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
 		context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
 		
+		Exam lpexam = context.getBean(Exam.class);
+		System.out.println(lpexam.toString());
+		
 		// 4-1. 객체의 클래스명으로 읽어 올 수있다. 단, 객체를 형변환 해야 한다
 //		ExamConsole console = (ExamConsole) context.getBean("console");
 
