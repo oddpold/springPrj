@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Exam exam = new NewlecExam(); -->
+	<bean id="exam" class="springPrj.di.entity.NewlecExam">
+		<!-- 값DI -->
+<!-- 		
+		<property name="kor" value="10"></property>
+		<property name="eng" value="10"></property>
+		<property name="math" value="10"></property>
+		<property name="com" value="10"></property>
+ -->
+ 		<!-- 생성자DI by index -->
+<!--
+  		<constructor-arg index="0" value="10"></constructor-arg>	
+ 		<constructor-arg index="1" value="20"></constructor-arg>	
+ 		<constructor-arg index="3" value="30"></constructor-arg>	
+ 		<constructor-arg index="2" value="40"></constructor-arg>	
+ -->
+ 		<!-- 생성자DI by name -->
+ 		<constructor-arg name="kor" value="10"></constructor-arg>	
+ 		<constructor-arg name="eng" value="20"></constructor-arg>	
+ 		<constructor-arg name="com" value="30"></constructor-arg>	
+ 		<constructor-arg name="math" value="40"></constructor-arg>	
+ 	</bean>
+	<!-- ExamConsole console = new InlineExamConsole(); -->
+	<bean id="console" class="springPrj.di.ui.GridExamConsole">
+		<!-- console.setExam(exam); -->
+		<property name="exam" ref="exam"></property>
+	</bean>
+
+
+</beans>
