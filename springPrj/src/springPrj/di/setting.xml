@@ -2,10 +2,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
+	<!-- namespace에서 context를 추가한다. 그리고 아래 태그를 추가. 이제부터 어노테이션을 쓸 수있다 -->
+	<context:annotation-config></context:annotation-config>
+	
 	<!-- Exam exam = new NewlecExam(); -->
-	<bean id="exam" class="springPrj.di.entity.NewlecExam" p:kor="10" p:eng="10" p:com="10" ></bean>
+<!-- 	<bean id="exam1" class="springPrj.di.entity.NewlecExam" p:kor="10" p:eng="10" p:com="10" ></bean>
+	<bean id="exam2" class="springPrj.di.entity.NewlecExam" p:kor="20" p:eng="20" ></bean>
+ -->	
 <!-- <bean id="exam" class="springPrj.di.entity.NewlecExam">
 		<property name="kor" value="10"></property>
 		<property name="eng" value="10"></property>
@@ -13,10 +22,26 @@
 		<property name="com" value="10"></property>
 	</bean> -->
 	<!-- ExamConsole console = new InlineExamConsole(); -->
-	<bean id="console" class="springPrj.di.ui.GridExamConsole">
+	<bean id="console" class="springPrj.di.ui.InlineExamConsole">
+	<!-- <bean id="console" class="springPrj.di.ui.GridExamConsole"> -->
 		<!-- console.setExam(exam); -->
-		<property name="exam" ref="exam"></property>
+		<!-- <property name="exam" ref="exam"></property> -->
 	</bean>
 
-
+	<!-- 아래처럼 하는 방법 말고, namespace에서 util을 추가하면 list 객체를 직접 사용 가능하다 -->
+<!-- 	<util:list id="exams" list-class="java.util.ArrayList">
+		<bean class="springPrj.di.entity.NewlecExam" p:kor="1" p:eng="1" p:com="1"></bean>
+		<ref bean="exam"/>
+	</util:list>
+ -->
+	<!-- bean 클래스를 만들어서 전달한다 -->
+<!-- 	<bean id="exams" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<bean class="springPrj.di.entity.NewlecExam" p:kor="1" p:eng="1" p:com="1"></bean>빙법1. 클래스 객체를 만들어 이용한다
+				<ref bean="exam"/> 방법2. 클래스 객체를 참조한다
+			</list>
+		</constructor-arg>
+	</bean>
+ -->
 </beans>

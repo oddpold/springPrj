@@ -1,11 +1,15 @@
 package springPrj.di;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  * 이클립스 인텔리센스가 사용하지 않는 import는 자동으로 접는다. 주의하자
  * preferences > java > editor > folding : 체크 해제
  */
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 
 import springPrj.di.entity.Exam;
 import springPrj.di.entity.NewlecExam;
@@ -15,7 +19,7 @@ import springPrj.di.ui.InlineExamConsole;
 public class Program {
 
 	// xml에서 객체를 읽어오기위한 인터페이스. 이클립스가 선선언 후사용 원칙으로 바꿔준다
-	private static ApplicationContext context;
+//	private static ApplicationContext context;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -42,11 +46,11 @@ public class Program {
 		 * 2. 생성자를 사용하는 또다른 방법. interface class에 setter 함수를 만들고 java class에서 오버라이딩 한다
 		 * 이클립스 2021.06 버전 현재 : 각 클래스에 맞게 setter 함수를 자동 생성이 가능하다
 		 */
-		Exam exam = new NewlecExam();
-		ExamConsole console = new InlineExamConsole();
-//		ExamConsole console = new GridExamConsole();
-		console.setExam(exam);
-		console.print();
+//		Exam exam = new NewlecExam();
+//		ExamConsole console = new InlineExamConsole();
+////		ExamConsole console = new GridExamConsole();
+//		console.setExam(exam);
+//		console.print();
 
 		// 그냥 줄나누기
 		System.out.print("\n\n");
@@ -65,19 +69,48 @@ public class Program {
 
 		// 이클립스 문제인지 스프링 문제인지...선선언 후사용 규칙을 강요한다.
 		// 주의 해서 사용하고, 주석을 꼭 남겨서 잊지 않도록 하자
-//		ApplicationContext context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
-		context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
+//		context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
 		
-		Exam lpexam = context.getBean(Exam.class);
-		System.out.println(lpexam.toString());
+		/*
+		 * 어노테이션DI를 사용하게되면 이 과정이 생략된다
+		 */
+//		Exam lpexam = context.getBean(Exam.class);
+//		System.out.println(lpexam.toString());
 		
 		// 4-1. 객체의 클래스명으로 읽어 올 수있다. 단, 객체를 형변환 해야 한다
 //		ExamConsole console = (ExamConsole) context.getBean("console");
 
 		// 4-2. 객체의 클래스를 직접 가져오는 방식
 		ExamConsole lpconsole = context.getBean(ExamConsole.class);
-		
 		lpconsole.print();
+		
+		System.out.println();
+		
+		// 컬렉션을 사용한다
+		// 일반적인 컬렉션 사용방법
+//		List<Exam> exams = new ArrayList<>();
+//		exams.add(new NewlecExam(1,1,1,1));
+
+		// context를 이용해서 xml에서 가져오자
+//		List<Exam> exams = (List<Exam>) context.getBean("exams");
+//		
+//		for (Exam e : exams)
+//		{
+//			System.out.println(e);
+//		}
+		
+	/*
+	 * 5. 어노테이션을 이용한 DI
+	 * @Autowired 가 붙어 있는 함수를 자동으로 DI 해준다. 단점은 묻지마 참조이다. IoC 컨테이너에서 전부 찾아서 바인딩 한다
+	 * 같은 객체(클래스)가 여러개가 있으면 오류. 반드시 id를 지정한다
+	 * 여러개의 객체를 이용할 때에는 각각의 id를 구분 하고, @Qualifier("exam1")으로 확실하게 지정해서 바인딩 한다
+	 * @Autowired
+	 * @Qualifier("exam1") 는 짝으로 같이 다닌다. 위치는 어디나 가능한데, private 앞에 두면 기본생성자를 포함한 injection이 된다
+	 * 오버로드 생성자에서는 주의한다. 어노테이션을 파라미터에 넣어야 한다.
+	 * 
+	 * ** @Autowired(required = false) 옵션을 사용하면 객체가 없어도 injection이 가능하다. 단, null 처리는 반드시 할것
+	 */
 		
 	}
 
