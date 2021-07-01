@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
 	<!-- @Component 어노테이션과 함께 사용한다 -->
-	<context:component-scan base-package="springPrj.di.ui" />
+	<context:component-scan base-package="springPrj.di.ui, springPrj.di.entity" />
 	<!-- namespace에서 context를 추가한다. 그리고 아래 태그를 추가. 이제부터 어노테이션을 쓸 수있다 -->
 	<!-- <context:annotation-config></context:annotation-config> -->
 	

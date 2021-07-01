@@ -19,7 +19,7 @@ import springPrj.di.ui.InlineExamConsole;
 public class Program {
 
 	// xml에서 객체를 읽어오기위한 인터페이스. 이클립스가 선선언 후사용 원칙으로 바꿔준다
-//	private static ApplicationContext context;
+	private static ApplicationContext context;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -69,8 +69,8 @@ public class Program {
 
 		// 이클립스 문제인지 스프링 문제인지...선선언 후사용 규칙을 강요한다.
 		// 주의 해서 사용하고, 주석을 꼭 남겨서 잊지 않도록 하자
-		ApplicationContext context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
-//		context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
+//		ApplicationContext context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
+		context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
 		
 		/*
 		 * 이건 데이터를 보려고 만든 함수이다
