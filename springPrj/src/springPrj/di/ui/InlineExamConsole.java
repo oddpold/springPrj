@@ -2,9 +2,11 @@ package springPrj.di.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import springPrj.di.entity.Exam;
 
+@Component("console")
 public class InlineExamConsole implements ExamConsole {
 
 	@Autowired(required = false)

@@ -53,7 +53,7 @@ public class Program {
 //		console.print();
 
 		// 그냥 줄나누기
-		System.out.print("\n\n");
+		System.out.print("\n");
 		
 		/*
 		 * 3. 스프링을 사용해서 settings.xml에 지시를 한다
@@ -73,16 +73,16 @@ public class Program {
 //		context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
 		
 		/*
-		 * 어노테이션DI를 사용하게되면 이 과정이 생략된다
+		 * 이건 데이터를 보려고 만든 함수이다
 		 */
 //		Exam lpexam = context.getBean(Exam.class);
 //		System.out.println(lpexam.toString());
 		
 		// 4-1. 객체의 클래스명으로 읽어 올 수있다. 단, 객체를 형변환 해야 한다
-//		ExamConsole console = (ExamConsole) context.getBean("console");
+		ExamConsole lpconsole = (ExamConsole) context.getBean("console");
 
 		// 4-2. 객체의 클래스를 직접 가져오는 방식
-		ExamConsole lpconsole = context.getBean(ExamConsole.class);
+//		ExamConsole lpconsole = context.getBean(ExamConsole.class);
 		lpconsole.print();
 		
 		System.out.println();
@@ -102,6 +102,7 @@ public class Program {
 		
 	/*
 	 * 5. 어노테이션을 이용한 DI
+	 * <context:annotation-config /> 태그와 연동
 	 * @Autowired 가 붙어 있는 함수를 자동으로 DI 해준다. 단점은 묻지마 참조이다. IoC 컨테이너에서 전부 찾아서 바인딩 한다
 	 * 같은 객체(클래스)가 여러개가 있으면 오류. 반드시 id를 지정한다
 	 * 여러개의 객체를 이용할 때에는 각각의 id를 구분 하고, @Qualifier("exam1")으로 확실하게 지정해서 바인딩 한다
@@ -110,6 +111,12 @@ public class Program {
 	 * 오버로드 생성자에서는 주의한다. 어노테이션을 파라미터에 넣어야 한다.
 	 * 
 	 * ** @Autowired(required = false) 옵션을 사용하면 객체가 없어도 injection이 가능하다. 단, null 처리는 반드시 할것
+	 * 
+	 * @Component
+	 * 클래스를 객체로 만든다. <context:component-scan base-package:"" /> 태그와 연동
+	 * 지금의 console 객체처럼 지정된 클래스 이름으로 찾을 경우 xml에 설정이 안되 있으면 에러가 난다
+	 * 그래서 어노테이션에서 @Component("console")이라고 지정을 한다
+	 * component-scan 태그가 정의 되어 있으면 annotation-config는 생략 가능하다
 	 */
 		
 	}
