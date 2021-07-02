@@ -2,11 +2,15 @@ package springPrj.di.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import springPrj.di.entity.Exam;
 
+@Component("console")
 public class GridExamConsole implements ExamConsole {
 
+	@Autowired
+	@Qualifier("exam")
 	private Exam exam;
 	
 	public GridExamConsole(Exam exam) {
@@ -28,8 +32,6 @@ public class GridExamConsole implements ExamConsole {
 		System.out.println("╚════════════╩═══════════╝");
 	}
 
-	@Autowired
-	@Qualifier("exam2")
 	@Override
 	public void setExam(Exam exam) {
 		this.exam = exam;

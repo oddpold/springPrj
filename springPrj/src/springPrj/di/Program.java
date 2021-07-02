@@ -1,20 +1,13 @@
 package springPrj.di;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /*
  * 이클립스 인텔리센스가 사용하지 않는 import는 자동으로 접는다. 주의하자
  * preferences > java > editor > folding : 체크 해제
  */
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-
-import springPrj.di.entity.Exam;
-import springPrj.di.entity.NewlecExam;
 import springPrj.di.ui.ExamConsole;
-import springPrj.di.ui.InlineExamConsole;
 
 public class Program {
 
@@ -70,7 +63,11 @@ public class Program {
 		// 이클립스 문제인지 스프링 문제인지...선선언 후사용 규칙을 강요한다.
 		// 주의 해서 사용하고, 주석을 꼭 남겨서 잊지 않도록 하자
 //		ApplicationContext context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
-		context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
+//		context = new ClassPathXmlApplicationContext("springPrj/di/setting.xml");
+		
+		// 다른 방법으로 어노테이션컨택스트를 사용하는 방법
+		// config를 xml로 할 것이냐, java class로 할 것이냐이다. 혼용은 금물
+		context = new AnnotationConfigApplicationContext(NewlecDIConfig.class);
 		
 		/*
 		 * 이건 데이터를 보려고 만든 함수이다

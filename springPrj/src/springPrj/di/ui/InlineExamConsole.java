@@ -9,9 +9,9 @@ import springPrj.di.entity.Exam;
 @Component("console")
 public class InlineExamConsole implements ExamConsole {
 
-	@Autowired
-//	@Autowired(required = false)
-//	@Qualifier("exam1")
+//	@Autowired
+	@Autowired(required = false)
+	@Qualifier("exam")
 	private Exam exam;
 	
 	public InlineExamConsole() {
